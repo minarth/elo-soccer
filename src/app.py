@@ -14,26 +14,16 @@ import pandas as pd
 
 from elo_calc import historical_prep, calculate_this_season
 
-# COLOR SCHEMES
-# ['rgb(179,226,205)', 'rgb(253,205,172)', 'rgb(203,213,232)', 'rgb(244,202,228)', 'rgb(230,245,201)', 'rgb(255,242,174)', 'rgb(241,226,204)', 'rgb(204,204,204)']
-# ['rgb(102,194,165)', 'rgb(252,141,98)', 'rgb(141,160,203)', 'rgb(231,138,195)', 'rgb(166,216,84)', 'rgb(255,217,47)', 'rgb(229,196,148)', 'rgb(179,179,179)']
 
 def get_difference_str(starting_elo, current_elo):
     diff = current_elo - starting_elo
     return "+" + str(diff) if diff >= 0 else str(diff)
 
 def generate_data():
-    # todo clear only current league teams
-    # todo column for elo on the begining of the season and current one
     elos = historical_prep()
     
-    # todo create estimates for all matches from scrapper
-    # order by oldest to newest
-    # update when match is played
-
     estimates, hist_elos, teams = calculate_this_season(elos)
 
-    from pprint import pprint
     starting_elos = [{"team": k, "starting_elo": round(v), "current_elo": round(elos[k]), "difference": get_difference_str(round(v), round(elos[k]))} 
         for k,v in historical_prep().items() if k in teams]
 
