@@ -96,9 +96,11 @@ def create_app():
                         children="⚽ Czech Football League ELO", className="header-title"
                     ),
                     html.P(
-                        children="Calculate the elo for first league teams"
+                        children=["Calculate the elo for first league teams"
                         " and try to predict upcoming events."
-                        " (everything automated). Here is description of the dashboard (TODO LINK).",
+                        " (everything automated). The description of how this works can be found on ",
+                        html.A(children="my blog.", href="https://mnch.cz/elo-soccer/", target="_blank")
+                        ],
                         className="header-description",
                     ),
 
